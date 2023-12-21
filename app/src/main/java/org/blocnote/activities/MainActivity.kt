@@ -7,6 +7,6 @@ import org.blocnote.R
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.liste_notes)
+        setContentView(R.layout.activity_liste_notes)
     }
 }
