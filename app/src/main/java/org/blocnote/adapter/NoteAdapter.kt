@@ -1,5 +1,6 @@
 package org.blocnote.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View
@@ -14,7 +15,7 @@ import org.blocnote.model.Note
 
 class NoteAdapter (private val listOfNotes: List<Note>, private val itemClickListener: View.OnClickListener):
     RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
-
+    val Tag: String = "NOTEADAPTER"
     class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
         val cardView1 = itemView.findViewById<CardView>(R.id.noteCardView1)
         val cardView2 = itemView.findViewById<CardView>(R.id.noteCardView2)
@@ -37,7 +38,7 @@ class NoteAdapter (private val listOfNotes: List<Note>, private val itemClickLis
     }
 
     override fun getItemCount(): Int {
-        return listOfNotes.size
+        return  if (listOfNotes.size%3 == 0) (listOfNotes.size/3) else listOfNotes.size/3+1
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -66,7 +67,7 @@ class NoteAdapter (private val listOfNotes: List<Note>, private val itemClickLis
             holder.titleNote2.text = ""
             holder.noteContent2.text = ""
             holder.cardView2.tag = ""
-            holder.cardView2.visibility = View.VISIBLE
+            holder.cardView2.visibility = View.INVISIBLE
         }
 
         if (3*position+2 < listOfNotes.size) {
@@ -81,7 +82,7 @@ class NoteAdapter (private val listOfNotes: List<Note>, private val itemClickLis
             holder.titleNote3.text = ""
             holder.noteContent3.text = ""
             holder.cardView3.tag = ""
-            holder.cardView3.visibility = View.VISIBLE
+            holder.cardView3.visibility = View.INVISIBLE
         }
 
     }
