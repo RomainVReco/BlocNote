@@ -22,13 +22,13 @@
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?attr/selectableItemBackground">
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="#EF8989">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#E67F7F"
                 android:orientation="vertical">
 
                 <TextView
@@ -57,13 +57,13 @@
             android:layout_height="145dp"
             android:layout_weight="1"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            app:cardBackgroundColor="#D2D66F">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#D2D66F"
                 android:orientation="vertical">
 
                 <TextView
@@ -92,13 +92,13 @@
             android:layout_height="145dp"
             android:layout_weight="1"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            app:cardBackgroundColor="#80C0EC">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#80C0EC"
                 android:orientation="vertical">
 
                 <TextView

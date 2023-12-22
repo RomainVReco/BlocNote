@@ -23,6 +23,9 @@ enum class ColorNote (val color: Int) {
     },
     VERT(Color.rgb(176, 242, 182)) {
         override fun commentaire() = "Vert d'eau"
+    },
+    NOIR(Color.rgb(0,0,0)) {
+      override fun commentaire() = "Noir"
     };
 
     abstract fun commentaire(): String

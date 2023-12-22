@@ -3,8 +3,8 @@ package org.blocnote.model
 import android.os.Parcel
 import android.os.Parcelable
 
-class Note (private val titre: String?, private val contenu: String?,
-            private val category: Int, private val fileName: String?): Parcelable {
+class Note (val titre: String?, val contenu: String?,
+            val category: Int, val fileName: String?): Parcelable {
 
                 val mutableStringList: MutableList<String> = mutableListOf()
     var thisIsMYlist: List<String> = ArrayList()

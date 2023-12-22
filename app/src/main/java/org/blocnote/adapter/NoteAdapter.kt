@@ -9,9 +9,10 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import org.blocnote.R
+import org.blocnote.model.ColorNote
 import org.blocnote.model.Note
 
-class NoteAdapter (private val listOfNotes: List<Note>, private val itemClickListener: OnItemClickListener):
+class NoteAdapter (private val listOfNotes: List<Note>, private val itemClickListener: View.OnClickListener):
     RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
 
     class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -28,6 +29,7 @@ class NoteAdapter (private val listOfNotes: List<Note>, private val itemClickLis
         var noteContent3 = itemView.findViewById<TextView>(R.id.noteContent3)
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val viewitem = inflater.inflate(R.layout.item_reycler_view, parent, false)
@@ -39,7 +41,61 @@ class NoteAdapter (private val listOfNotes: List<Note>, private val itemClickLis
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val note = listOfNotes.get(position)
-        holder.titleNote1.setText(note.)
+        if (3*position<listOfNotes.size) {
+            val titre1 = listOfNotes[3*position].titre
+            val noteContent1 = listOfNotes[3*position].contenu
+            val filename1 = listOfNotes[3*position].fileName
+            val cat = listOfNotes[3*position].category
+            holder.titleNote1.text = titre1
+            holder.noteContent1.text = noteContent1
+            holder.cardView1.setCardBackgroundColor(assignColor(cat))
+            holder.cardView1.tag = "${filename1};${3*position+1}"
+            holder.cardView1.setOnClickListener(itemClickListener)
+            holder.cardView1.visibility = View.VISIBLE
+        }
+
+        if (3*position+1 < listOfNotes.size) {
+            holder.titleNote2.text = listOfNotes[3*position+1].titre
+            holder.noteContent2.text = listOfNotes[3*position+1].contenu
+            holder.cardView2.setCardBackgroundColor(assignColor(listOfNotes[3*position+1].category))
+            holder.cardView2.tag = "${listOfNotes[3*position+1].fileName};${3*position+1}"
+            holder.cardView2.setOnClickListener(itemClickListener)
+            holder.cardView2.visibility = View.VISIBLE
+        }
+        else {
+            holder.titleNote2.text = ""
+            holder.noteContent2.text = ""
+            holder.cardView2.tag = ""
+            holder.cardView2.visibility = View.VISIBLE
+        }
+
+        if (3*position+2 < listOfNotes.size) {
+            holder.titleNote3.text = listOfNotes[3*position+2].titre
+            holder.noteContent3.text = listOfNotes[3*position+2].contenu
+            holder.cardView3.setCardBackgroundColor(assignColor(listOfNotes[3*position+2].category))
+            holder.cardView3.tag = "${listOfNotes[3*position+2].fileName};${3*position+2}"
+            holder.cardView3.setOnClickListener(itemClickListener)
+            holder.cardView3.visibility = View.VISIBLE
+        }
+        else {
+            holder.titleNote3.text = ""
+            holder.noteContent3.text = ""
+            holder.cardView3.tag = ""
+            holder.cardView3.visibility = View.VISIBLE
+        }
+
+    }
+
+    private fun assignColor(category: Int): Int {
+        when (category) {
+            0 -> return ColorNote.AZURIN.color
+            1 -> return ColorNote.BLANC.color
+            2 -> return ColorNote.CITROUILLE.color
+            3 -> return ColorNote.GRIS.color
+            4 -> return ColorNote.JAUNE.color
+            5 -> return ColorNote.ROSE.color
+            6 -> return ColorNote.VERT.color
+            else -> return ColorNote.NOIR.color
+        }
     }
 }
