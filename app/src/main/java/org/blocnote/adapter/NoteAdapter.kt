@@ -1,5 +1,6 @@
 package org.blocnote.adapter
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.TextureView
@@ -42,25 +43,35 @@ class NoteAdapter (private val listOfNotes: List<Note>, private val itemClickLis
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val inlinePosCardOne = 3*position
+        val inlinePosCardTwo = 3*position+1
+        val inlinePosCardThree = 3*position+2
+
         if (3*position<listOfNotes.size) {
-            val titre1 = listOfNotes[3*position].titre
-            val noteContent1 = listOfNotes[3*position].contenu
-            val filename1 = listOfNotes[3*position].fileName
-            val cat = listOfNotes[3*position].category
+            val titre1 = listOfNotes[inlinePosCardOne].titre
+            val noteContent1 = listOfNotes[inlinePosCardOne].contenu
+            val filename1 = listOfNotes[inlinePosCardOne].fileName
+            val cat = listOfNotes[inlinePosCardOne].category
             holder.titleNote1.text = titre1
             holder.noteContent1.text = noteContent1
             holder.cardView1.setCardBackgroundColor(assignColor(cat))
-            holder.cardView1.tag = "${filename1};${3*position+1}"
-            holder.cardView1.setOnClickListener(itemClickListener)
+            holder.cardView1.tag = "${filename1};${inlinePosCardOne}"
+            holder.cardView1.setOnClickListener{ view ->
+                Note.lauchNoteActivity(listOfNotes[inlinePosCardOne], view)
+            }
+
             holder.cardView1.visibility = View.VISIBLE
         }
 
         if (3*position+1 < listOfNotes.size) {
-            holder.titleNote2.text = listOfNotes[3*position+1].titre
-            holder.noteContent2.text = listOfNotes[3*position+1].contenu
-            holder.cardView2.setCardBackgroundColor(assignColor(listOfNotes[3*position+1].category))
-            holder.cardView2.tag = "${listOfNotes[3*position+1].fileName};${3*position+1}"
-            holder.cardView2.setOnClickListener(itemClickListener)
+            holder.titleNote2.text = listOfNotes[inlinePosCardTwo].titre
+            holder.noteContent2.text = listOfNotes[inlinePosCardTwo].contenu
+            holder.cardView2.setCardBackgroundColor(assignColor(listOfNotes[inlinePosCardTwo].category))
+            holder.cardView2.tag = "${listOfNotes[inlinePosCardTwo].fileName};${inlinePosCardTwo}"
+            holder.cardView2.setOnClickListener{ view ->
+                Note.lauchNoteActivity(listOfNotes[inlinePosCardTwo], view)
+            }
+
             holder.cardView2.visibility = View.VISIBLE
         }
         else {
@@ -71,11 +82,13 @@ class NoteAdapter (private val listOfNotes: List<Note>, private val itemClickLis
         }
 
         if (3*position+2 < listOfNotes.size) {
-            holder.titleNote3.text = listOfNotes[3*position+2].titre
-            holder.noteContent3.text = listOfNotes[3*position+2].contenu
-            holder.cardView3.setCardBackgroundColor(assignColor(listOfNotes[3*position+2].category))
-            holder.cardView3.tag = "${listOfNotes[3*position+2].fileName};${3*position+2}"
-            holder.cardView3.setOnClickListener(itemClickListener)
+            holder.titleNote3.text = listOfNotes[inlinePosCardThree].titre
+            holder.noteContent3.text = listOfNotes[inlinePosCardThree].contenu
+            holder.cardView3.setCardBackgroundColor(assignColor(listOfNotes[inlinePosCardThree].category))
+            holder.cardView3.tag = "${listOfNotes[inlinePosCardThree].fileName};${inlinePosCardThree}"
+            holder.cardView3.setOnClickListener{ view ->
+                Note.lauchNoteActivity(listOfNotes[inlinePosCardThree], view)
+            }
             holder.cardView3.visibility = View.VISIBLE
         }
         else {

@@ -1,13 +1,13 @@
 package org.blocnote.model
 
+import android.content.Intent
 import android.os.Parcel
 import android.os.Parcelable
+import android.view.View
+import org.blocnote.activities.DetailNote
 
 class Note (val titre: String?, val contenu: String?,
             val category: Int, val fileName: String?): Parcelable {
-
-                val mutableStringList: MutableList<String> = mutableListOf()
-    var thisIsMYlist: List<String> = ArrayList()
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -29,12 +29,19 @@ class Note (val titre: String?, val contenu: String?,
     }
 
     companion object CREATOR : Parcelable.Creator<Note> {
+        val keyNote = "Note"
         override fun createFromParcel(parcel: Parcel): Note {
             return Note(parcel)
         }
 
         override fun newArray(size: Int): Array<Note?> {
             return arrayOfNulls(size)
+        }
+
+        fun lauchNoteActivity (note: Note, view: View) {
+            val intent = Intent(view.context, DetailNote::class.java)
+            intent.putExtra(keyNote, note)
+            view.context.startActivity(intent)
         }
     }
 
