@@ -30,4 +30,16 @@ enum class ColorNote (val color: Int) {
 
     abstract fun commentaire(): String
 
+    fun getColor(category: Int): Int {
+        when (category) {
+            0 -> return AZURIN.color
+            1 -> return BLANC.color
+            2 -> return CITROUILLE.color
+            3 -> return GRIS.color
+            4 -> return JAUNE.color
+            5 -> return ROSE.color
+            6 -> return VERT.color
+            else -> return NOIR.color
+        }
+    }
 }

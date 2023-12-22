@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import org.blocnote.R
+import org.blocnote.model.ColorNote
 import org.blocnote.model.Note
 
 class DetailNote : AppCompatActivity() {
@@ -21,12 +22,21 @@ class DetailNote : AppCompatActivity() {
 
         val title = findViewById<TextView>(R.id.detailNoteTitle)
         val content = findViewById<TextView>(R.id.detailNoteContent)
-        val containerView = findViewById<ConstraintLayout>(R.id.detailNoteView)
 
-        containerView.setBackgroundColor(receivedNote.category)
+        updateDisplayContent(title, content)
+
+        updateViewColor(title, content)
+
+    }
+
+    private fun updateDisplayContent(title: TextView, content: TextView) {
         title.text = receivedNote.titre
         content.text = receivedNote.contenu
+    }
 
+    private fun updateViewColor(title: TextView, content: TextView) {
+        title.setBackgroundColor(ColorNote.entries[receivedNote.category].color)
+        content.setBackgroundColor(ColorNote.entries[receivedNote.category].color)
     }
 
     override fun onDestroy() {

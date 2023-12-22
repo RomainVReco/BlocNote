@@ -5,12 +5,14 @@
     android:id="@+id/detailNoteView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#C84F4F"
     tools:context=".activities.DetailNote">
 
     <TextView
         android:id="@+id/detailNoteTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:drawableTint="#CA3333"
         android:gravity="center"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
@@ -35,4 +37,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailNoteTitle" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
