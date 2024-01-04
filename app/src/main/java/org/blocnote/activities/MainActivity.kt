@@ -1,5 +1,6 @@
 package org.blocnote.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,7 +11,7 @@ import org.blocnote.R
 import org.blocnote.adapter.NoteAdapter
 import org.blocnote.model.Note
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity() {
     lateinit var notes: MutableList<Note>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,16 +31,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         notes.add(Note("Titre note 9", "Contenu note 9",1,""))
         notes.add(Note("Titre note 10", "Contenu note 10",0,""))
 
-        val noteAdapter = NoteAdapter(notes, this)
+        val noteAdapter = NoteAdapter(notes)
         val recyclerView = findViewById<RecyclerView>(R.id.mainRecycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = noteAdapter
     }
 
-    override fun onClick(v: View?) {
-        if (v?.tag != null) {
-            val chaine = v.tag as String
-            Toast.makeText(this, "tag : $chaine", Toast.LENGTH_SHORT).show()
-        }
+    fun editNote(position: Int) {
+        val intent = Intent(this, DetailNote::class.java)
     }
-}
+
+    }

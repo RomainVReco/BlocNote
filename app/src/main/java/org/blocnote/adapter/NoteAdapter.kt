@@ -14,7 +14,7 @@ import org.blocnote.R
 import org.blocnote.model.ColorNote
 import org.blocnote.model.Note
 
-class NoteAdapter (private val listOfNotes: List<Note>, private val itemClickListener: View.OnClickListener):
+class NoteAdapter (private val listOfNotes: List<Note>):
     RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
     val Tag: String = "NOTEADAPTER"
     class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -97,9 +97,7 @@ class NoteAdapter (private val listOfNotes: List<Note>, private val itemClickLis
             holder.cardView3.tag = ""
             holder.cardView3.visibility = View.INVISIBLE
         }
-
     }
-
     private fun assignColor(category: Int): Int {
         when (category) {
             0 -> return ColorNote.AZURIN.color
