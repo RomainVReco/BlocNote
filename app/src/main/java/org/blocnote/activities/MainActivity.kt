@@ -39,6 +39,13 @@ class MainActivity : AppCompatActivity() {
 
     fun editNote(position: Int) {
         val intent = Intent(this, DetailNote::class.java)
+        intent.putExtra("note", notes[position])
+        intent.putExtra("noteindex", position)
+        startActivityForResult(intent, DetailNote.REQUEST_EDIT_NOTE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     }

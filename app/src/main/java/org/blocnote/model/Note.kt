@@ -6,8 +6,8 @@ import android.os.Parcelable
 import android.view.View
 import org.blocnote.activities.DetailNote
 
-class Note (val titre: String?, val contenu: String?,
-            val category: Int, val fileName: String?): Parcelable {
+class Note (var titre: String?, var contenu: String?,
+            var category: Int, var fileName: String?): Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),

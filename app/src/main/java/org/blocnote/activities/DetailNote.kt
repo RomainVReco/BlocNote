@@ -17,8 +17,11 @@ class DetailNote : AppCompatActivity() {
     lateinit var receivedNote: Note
     lateinit var radiogroup: RadioGroup
     val Tag = "DETAILNOTE"
-    val listOfCategory: MutableList<String> = mutableListOf("A faire", "Liste de courses", "RDV perso",
-        "RDV pro","Lien internet", "Contact", "Loisirs")
+    lateinit var title: TextView
+    lateinit var content: TextView
+    lateinit var category: TextView
+    lateinit var toolbar: androidx.appcompat.widget.Toolbar
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,10 +30,10 @@ class DetailNote : AppCompatActivity() {
         receivedNote = intent.getParcelableExtra(Note.keyNote)!!
         radiogroup = findViewById(R.id.radioGroup)
 
-        val title = findViewById<TextView>(R.id.detailNoteTitle)
-        val content = findViewById<TextView>(R.id.detailNoteContent)
-        val category = findViewById<TextView>(R.id.categorie)
-        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbarDetail)
+        title = findViewById<TextView>(R.id.detailNoteTitle)
+        content = findViewById<TextView>(R.id.detailNoteContent)
+        category = findViewById<TextView>(R.id.categorie)
+        toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbarDetail)
 
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -44,6 +47,17 @@ class DetailNote : AppCompatActivity() {
             radiogroup.visibility=View.VISIBLE
         }
 
+    }
+
+    fun saveNote() {
+       receivedNote.titre = title.text.toString()
+
+    }
+
+    companion object {
+        var listOfCategory: MutableList<String> = mutableListOf("A faire", "Liste de courses", "RDV perso",
+            "RDV pro","Lien internet", "Contact", "Loisirs")
+        val REQUEST_EDIT_NOTE = 1
     }
 
 
